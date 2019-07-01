@@ -26,7 +26,7 @@ github_username:  SergeyDukhovich
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-minimal
+remote_theme: mmistakes/minimal-mistakes
 plugins:
   - jekyll-feed
 
