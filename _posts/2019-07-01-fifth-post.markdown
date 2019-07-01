@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: page
 title:  "Fifth post"
 date:   2019-07-01 13:28:31 +0300
 categories: jekyll update
