@@ -29,6 +29,7 @@ markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
 plugins:
   - jekyll-feed
+  - jekyll-include-cache
 
 # Outputting
 paginate: 5 # amount of posts to show
