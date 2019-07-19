@@ -36,22 +36,14 @@ paginate: 5
 paginate_path: /page:num/
 timezone: "Europe/Minsk" 
 
+words_per_minute: 200
+comments:
+  provider: "disqus"
+  disqus:
+    shortname: "dukhovich"
+
 include:
   - _pages
-
-# Defaults
-defaults:
-  # _posts
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      comments: true
-      share: true
-      related: true
 
 plugins:
   - jekyll-paginate
