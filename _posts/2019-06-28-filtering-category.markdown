@@ -1,10 +1,8 @@
 ---
 layout: single
 title: "Filtering Category"
-ref: filtering-category
 date: 2019-06-28 12:00:00 +0300
 categories: rxswift
-lang: en
 ---
 
 ## Filtering Category

@@ -1,10 +1,8 @@
 ---
 layout: single
 title: "Delegates"
-ref: delegates
 date: 2019-07-26 12:00:00 +0300
 categories: rxswift
-lang: en
 ---
 
 Operators from create section are not the only way to create an Observable sequence.

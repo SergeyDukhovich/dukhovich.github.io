@@ -1,10 +1,8 @@
 ---
 layout: single
 title: "Debug"
-ref: debug
 date: 2019-05-24 12:00:00 +0300
 categories: rxswift
-lang: en
 ---
 
 The subscription method has got a lot of parameters. You can pass not only `onNext` closure, but `onError`, `onCompleted` and `onDisposed` as well.

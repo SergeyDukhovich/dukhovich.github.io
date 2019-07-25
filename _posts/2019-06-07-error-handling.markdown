@@ -1,10 +1,8 @@
 ---
 layout: single
 title: "Error handling"
-ref: error-handling
 date: 2019-06-07 12:00:00 +0300
 categories: rxswift
-lang: en
 ---
 
 **Normal termination** of an Observable sequence is **Completed** or **Error** event. After one of them is emitted, Observable can’t emit any Next event and resources for the Observable are released.

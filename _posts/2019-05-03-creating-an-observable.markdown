@@ -1,10 +1,8 @@
 ---
 layout: single
 title: "Creating an Observable"
-ref: creating-an-observable
 date: 2019-05-03 12:00:00 +0300
 categories: rxswift
-lang: en
 ---
 
 In this post I'm going to run through all methods available in  the [Create](http://reactivex.io/documentation/operators.html#creating) section on reactivex website.

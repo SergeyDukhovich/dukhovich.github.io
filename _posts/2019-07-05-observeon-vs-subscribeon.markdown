@@ -1,10 +1,8 @@
 ---
 layout: single
 title: "ObserveOn vs SubscribeOn"
-ref: observeon-vs-subscribeon
 date: 2019-07-05 12:00:00 +0300
 categories: rxswift
-lang: en
 ---
 
 By default, an Observable and the chain of operators that you apply to it will do its work, and will notify its observers, on the same thread on which its Subscribe method is called ([reactivex.io](http://reactivex.io/documentation/scheduler.html)).

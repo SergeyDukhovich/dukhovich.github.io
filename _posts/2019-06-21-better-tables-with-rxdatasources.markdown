@@ -1,17 +1,15 @@
 ---
 layout: single
-title: "Улучшаем таблицы с RxDataSources"
-ref: better-tables-with-rxdatasources
+title: "Better tables with RxDataSources"
 date: 2019-06-21 12:00:00 +0300
 categories: rxswift
-lang: ru
 ---
 
-В RxCocoa есть несколько стандартных методов биндинга Observable в UITableView или UICollectionView.
+RxCocoa framework provides some methods that help you bind an Observable sequence to an instance of UITableView or UICollectionView. 
 
 ## RxCocoa
 
-Допустим, перед нами стоит задача отобразить массив `Message` в UITableView:
+The task for this article is to display an array of `Message` in UITableView.
 
 ```swift
 enum Message {
@@ -22,7 +20,7 @@ enum Message {
 }
 ```
 
-Для `text` и `attributedText` я буду использовать стандартные ячейки, а для `photo` и `location` я создам кастомные xib. А вот массив сообщений, который я хочу отобразить в таблице:
+For the `text` and the `attributedText` cases I'm going to use standard cells. And for the `photo` and the `location` cases I'm going to create custom xibs. My message source will be the following:
 
 ```swift
 [
@@ -45,9 +43,9 @@ enum Message {
 ]
 ```
 
-### Биндим массив к таблице
+### Bind source to table
 
-В RxCocoa к медодам для работы с таблицами, объявленным в файле  `UITableView+Rx.swift`, есть комментарии-примеры их использования:
+RxCocoa provides 2 methods for binding a source array to UITableView. The examples from the `UITableView+Rx.swift` are the following:
 
 #### 1.
 
@@ -65,7 +63,7 @@ enum Message {
      .disposed(by: disposeBag)
 ```
 
-Этот метод подойдет в случаях, когда мы используем одинаковые ячейки для всех элементов массива. Ни идентификатор ячейки, ни класс/xib ячейки не может быть изменен в замыкании. В нем мы только донастраиваем конечный вид ячейки перед ее появлением в таблице.
+This method will be suitable when you are going to use just one cell type for all items from the source. The cell identifier and cell type can't be changed in the closure. All you need to do in the closure is to configure the existing cell before it is displayed.
 
 #### 2.
 
@@ -85,9 +83,9 @@ enum Message {
  .disposed(by: disposeBag)
 ```
 
-Этот метод более гибкий, т.к. ответственность за создание ячейки лежит полностью на мне. Используя этот метод, в таблице можно использовать ячейки с разными идентификаторами и классами/xib ячеек.
+This method gives you more control over the cell types. Now you are responsible for the cell creation process as well.
 
-Задача, которую я описал выше, может быть реализована как в примере ниже. Статические методы конфигурируют ячейки.
+Using this method I can implement a table displaying the data source I wanted. All these static class functions just update the cell using a message.
 
 ```swift
 messages
@@ -107,25 +105,25 @@ messages
 .disposed(by: disposeBag)
 ```
 
-И сама таблица, отображающая разные типы ячеек:
+The table displaying all messages in different cell types:
 
 ![rxcocoa-table-sample](http://uploads.dukhovich.by.s3.amazonaws.com/articles/10/rxcocoa-table-sample.png)
 
-[Ссылка на коммит с текущей реализацией.](https://github.com/SergeyDukhovich/RxDataSourcesSample/tree/326ca6e6a182d54a184edbec1a1fd9bcf288a733)
+[Link to the commit with current implementation.](https://github.com/SergeyDukhovich/RxDataSourcesSample/tree/326ca6e6a182d54a184edbec1a1fd9bcf288a733)
 
-Но если RxCocoa справляется с задачей, зачем тогда нужен RxDataSources?
+And if RxCocoa table binding works fine, why is RxDataSources needed?
 
 ## RxDataSources
 
-### Секции
+### Sections
 
-Во-первых, RxDataSources предоставляет возможность отображать данные в таблице с несколькими секциями, в то время как RxCocoa отображает весь массив только в первой секции по-умолчанию. Давайте модифицируем немного исходную задачу, и разобьем 12 сообщений на 3 секции, по 4 сообщения в каждом.
+RxDataSources allows us to bind not just a single sectioned data source, but multiple as well. Let's say I want to split 12 messages into 3 sections, 4 messages in each.
 
-Фреймворк предоставляет 2 типа dataSource для таблиц: `RxTableViewSectionedReloadDataSource` и `RxTableViewSectionedAnimatedDataSource`, и аналогичные для коллекций. Эти типы требуют типов-секций, которые реализуют `SectionModelType` протокол. В Differentiator, который является зависимостью к RxDataSources, есть готовая `SectionModel` структура, в которой нужно указать тип секции и тип элементов.
+The framework provides 2 types of data sources for tables: `RxTableViewSectionedReloadDataSource` and `RxTableViewSectionedAnimatedDataSource`, and similar types for collections. These classes require implementation of `SectionModelType` protocol. Hopefully,  `SectionModel` struct from internal dependency (Differentiator) could be used for this purpose.  
 
-`Observable<[Message]>` изменится на `Observable<[SectionModel<String, Message>]>`.
+And our initial source Observable with this type: `Observable<[Message]>` will be modified to the `Observable<[SectionModel<String, Message>]>`. 
 
-У вью контроллера появится свойство `dataSource`:
+There is a new property in ViewController, which is called `dataSource`:
 
 ```swift
  let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, Message>>(configureCell: { dataSource, table, indexPath, message in
@@ -143,7 +141,7 @@ messages
   })
 ```
 
-Обновленное свойство `messages`: 
+Also, `messages` variable was updated: 
 
 ```swift
 private var messages = Observable<[SectionModel<String, Message>]>.just([
@@ -175,7 +173,7 @@ private var messages = Observable<[SectionModel<String, Message>]>.just([
     ])
 ```
 
-Несмотря на то, что мы используем секции, таблица внешне ничем не отличается от таблицы из первого примера. Что бы отобразить заголовки секций, нужно добавить следующий код (перед биндингом таблицы):
+With the changes above our table will look absolutely the same. To modify the appearance a bit, let's add section titles. This code should be added before the line where the actual binding is.
 
 ```swift
     dataSource.titleForHeaderInSection = { dataSource, index in
@@ -183,17 +181,17 @@ private var messages = Observable<[SectionModel<String, Message>]>.just([
     }
 ```
 
-И сама таблица, отображающая разные типы ячеек, помещенные в секции:
+The table displaying all messages in different cell types in 3 sections:
 
 ![rxdatasources-table-sample](http://uploads.dukhovich.by.s3.amazonaws.com/articles/10/rxdatasources-table-sample.png)
 
-[Ссылка на коммит с текущей реализацией.](https://github.com/SergeyDukhovich/RxDataSourcesSample/tree/c3c55b3a7e484d2b067f182ffee492f99e22a67b)
+[Link to the commit with current implementation.](https://github.com/SergeyDukhovich/RxDataSourcesSample/tree/c3c55b3a7e484d2b067f182ffee492f99e22a67b)
 
 ### Animation 
 
-Второй особенностью RxDataSources является возможность анимировано обновлять ячейки, каждый раз, когда Observable эмитит `next` ивент. В предыдущей реализации таблица использовала метод `reloadData` на каждый `next` ивент.
+The implementation above uses `reloadData` method on the UITableView when observable changes. RxDataSources also provides the animated way of updating tables.
 
-Для анимаций нужно реализовать еще парочку протоколов нашим типам. `IdentifiableType` для `Message` может выглядеть следующим образом:
+At first, all our messages should conform to `IdentifiableType` protocol. At first glance it might seem like we need to conform our enum in the similar way as the following implementation:
 
 ```swift
 extension Message: IdentifiableType {
@@ -213,22 +211,22 @@ extension Message: IdentifiableType {
 }
 ```
 
-Но тут нужно взять паузу и хорошенько подумать, над каким типом задачи мы работаем, и что именно мы хотим реализовать. Т.к. например для чата такая реализация не подойдет. Т.к. текстовая ячейка с "привет" от Пети будет конфликтовать с "привет"-ячейкой от Васи. Несмотря на то, что ошибок компиляции в коде нет, на лицо логическая ошибка. А в случае, когда на экране нужно будет отобразить эти 2 ячейки, то приложение крешнется.
+But don't be in a hurry. In some cases, like in a chat implementation, you might want to have unique identifiers for the cells even with the same text. Like "Hello"-cell from a user John and "Hello"-cell from a user Adam should be different. There are no compile-time errors in the implementation above, but it doesn't suit the chat.
 
-Итак, что нужно обновить в проекте для подключения анимаций?
+Ok. The bottom line- what do we have to change in our project?
 
-* Изменить `RxTableViewSectionedReloadDataSource` на`RxTableViewSectionedAnimatedDataSource`;
-* Изменить `SectionModel` на `AnimatableSectionModel`;
-* Реализовать `IdentifiableType` протокол у `Message`;
-* Реализовать `Equatable` протокол у `Message`;
+* Change `RxTableViewSectionedReloadDataSource` to `RxTableViewSectionedAnimatedDataSource`;
+* Change `SectionModel` to `AnimatableSectionModel`;
+* Conform `Message` to `IdentifiableType` protocol;
+* Conform `Message` to `Equatable` protocol;
 
-[Ссылка на коммит с текущей реализацией.](https://github.com/SergeyDukhovich/RxDataSourcesSample/tree/1cd8dd53296739df4871978dea7bd54a2be3840a)
+[Link to the commit with current implementation.](https://github.com/SergeyDukhovich/RxDataSourcesSample/tree/1cd8dd53296739df4871978dea7bd54a2be3840a)
 
 ### NSObject
 
-Время от времени, в качестве источника у нас будет массив объектов класса, унаследованного от `NSObject`, нам придется реализовывать у него `IdentifiableType`.
+From time to time we need to conform a subclass of `NSObject` to `IdentifiableType`.
 
-В качестве примера, реализация `MessageObject`:
+In the last example I'll provide a table for the `MessageObject`:
 
 ```swift
 class MessageObject: NSObject {
@@ -247,8 +245,8 @@ class MessageObject: NSObject {
 }
 ```
 
-`Message` все тот же enum, который использовался выше.
+`Message` is the same as we used in the examples above.
 
 ![rxdatasources-table-sample](http://uploads.dukhovich.by.s3.amazonaws.com/articles/10/rxdatasources-animated-implementation.gif)
 
-[Ссылка на коммит с текущей реализацией.](https://github.com/SergeyDukhovich/RxDataSourcesSample/tree/115397f2bbc86986e7454a01a00e45999228b807)
+[Link to the commit with current implementation.](https://github.com/SergeyDukhovich/RxDataSourcesSample/tree/115397f2bbc86986e7454a01a00e45999228b807)

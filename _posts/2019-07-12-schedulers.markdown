@@ -1,10 +1,8 @@
 ---
 layout: single
 title: "Schedulers"
-ref: schedulers
 date: 2019-07-12 12:00:00 +0300
 categories: rxswift
-lang: en
 ---
 
 In the last post I covered 2 operators, that work with schedulers. They are `observeOn` and `subscribeOn`. I said that the scheduler might be read as a queue in the context of `observeOn` and `subscribeOn`.
