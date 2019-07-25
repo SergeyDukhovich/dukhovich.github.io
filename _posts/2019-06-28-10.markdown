@@ -1,3 +1,12 @@
+---
+layout: single
+title: "Filtering Category"
+ref: filtering-category
+date: 2019-06-28 12:00:00 +0300
+categories: rxswift
+lang: en
+---
+
 ## Filtering Category
 
 Today I'm going thoroughly through all the available operators in the filtering category from the [reactivex](http://reactivex.io/documentation/operators.html#filtering).

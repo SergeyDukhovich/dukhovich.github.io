@@ -1,4 +1,11 @@
-## Connectable Observable
+---
+layout: single
+title: "Connectable Observable"
+ref: connectable-observable
+date: 2019-05-10 12:00:00 +0300
+categories: rxswift
+lang: en
+---
 
 There are only 4 operators in the [connectable](http://reactivex.io/documentation/operators.html#connectable) category.
 

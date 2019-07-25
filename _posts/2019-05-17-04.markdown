@@ -1,4 +1,11 @@
-## Traits
+---
+layout: single
+title: "Traits"
+ref: traits
+date: 2019-05-17 12:00:00 +0300
+categories: rxswift
+lang: en
+---
 
 The Observable type in RxSwift is quite self-sufficient. But from time to time we have to think about specific cases and scenarios. Could the custom Observable button send `error`? Could a network-manager send a response or `next` twice? Do we need extra `observeOn` to forward elements to the particular thread?
 

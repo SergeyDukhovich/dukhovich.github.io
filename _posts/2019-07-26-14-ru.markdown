@@ -1,14 +1,21 @@
-## Delegates
+---
+layout: single
+title: "Делегаты"
+ref: delegates
+date: 2019-07-26 12:00:00 +0300
+categories: rxswift
+lang: ru
+---
 
-Operators from create section are not the only way to create an Observable sequence.
+Операторы из категории create - не единственный способ создания Observable последовательности.
 
-From time to time you might want to add some reactiveness to the code based on [delegate pattern](https://developer.apple.com/documentation/swift/cocoa_design_patterns/using_delegates_to_customize_object_behavior). This pattern is commonly used in Apple's frameworks, especially in UIKit. 
+Иногда возникает необходимость преобразовать методы существующего делегата в Observable. Поскольку [паттерн делегирования](https://developer.apple.com/documentation/swift/cocoa_design_patterns/using_delegates_to_customize_object_behavior) очень распространен во фреймворках Apple, задача расширения делегатов за счет добавления Observable функционала, рано или поздно может понадобиться.
 
 ### UITableView
 
-Let's take a look at most used class with delegate/datasource pattern. It's a `UITableView`.
+Давайте посмотрим на самый часто используемый класс, который настраивается делегатом и источником данных (dataSource), - `UITableView`.
 
-The simplest RxSwift `UITableView` example might look like the following:
+Одна из простейших настроек таблицы с использованием Rx, может выглядеть следующим образом:
 
 ```swift
 class ViewController: UIViewController {
@@ -54,11 +61,9 @@ class ViewController: UIViewController {
 
 ![countries](http://uploads.dukhovich.by.s3.amazonaws.com/articles/countries.png)
 
-When you connect table's outlet and the controller in storyboard/xib together (without setting a dataSource property), you'll see that the list above is displayed in `UITableView` properly. You might have noticed, that I hadn't setup dataSource in code as well. 
+Запустив код, мы видим, что таблица отображается корректно, несмотря на то, что ни источник данных, ни делегат не был назначен на `ViewController`. Связь dataSource <-> вью контроллер была создана в тот момент, когда у таблицы был вызван метод `items(dataSource:)`. Реализацию можно посмотреть в файле `UITableView+Rx.swift`. Сразу же на глаза бросается класс `RxTableViewDataSourceProxy`, который предположительно отвечает за сайд эффект (неявная установка источника в таблице), который мы наблюдали выше.
 
-The dataSource <-> viewcontroller connection was done in `items(dataSource:)` call. You could check the implementation out opening `UITableView+Rx.swift`. There is an interesting entry of `RxTableViewDataSourceProxy` which will be my start point for  this topic.
-
-Without body, the class definition and inheritance chain look in the following way:
+Используем данный класс как начальную точку в поиске подробностей. Объявление класса `RxTableViewDataSourceProxy` выглядит следующим образом:
 
 ```swift
 open class RxTableViewDataSourceProxy
@@ -68,20 +73,20 @@ open class RxTableViewDataSourceProxy
 }
 ```
 
-We see `UITableViewDataSource` protocol, class `DelegateProxy` with specific types for this narrow use-case and `DelegateProxyType` protocol.
+Мы видим протокол `UITableViewDataSource`, класс `DelegateProxy` с двумя конкретными типами и протокол `DelegateProxyType`.
 
-Looking into `DelegateProxyType.swift` and reading its short documentation explains  the idea behind the class mess above. As developers, we might want to use both, regular delegate calls and reactive wrappers for them at the same time (what might be not the best idea).
+После прочтения комментариев, оставленных в `DelegateProxyType.swift` понимаем причину, по которой были написаны все эти прокси и делегаты. Как разработчику, RxSwift предоставляет мне возможность использовать оба способа написания логики, в методе делегата и в Observable последовательности, которая является оберткой над этим самым делегатом.
 
-There is a warning about usage:
+Так же в файле можно увидеть заметки на тему того, как не нужно инициализировать `DelegateProxyType`:
 
-> Type implementing `DelegateProxyType` should never be initialized directly.
-> To fetch initialized instance of type implementing `DelegateProxyType`, `proxy` method should be used.
+> Реализации `DelegateProxyType` не должны инициализироваться напрямую.
+> Для получения сущности реализованного типа `DelegateProxyType`, метод `proxy` должен быть вызван.
 
-For some classes, like UITableView, initialization is already done. All we need is just write `tableView.rx.setDelegate(self)` in our ViewController.
+Для некоторых классов, например `UITableView`, эта инициализация уже написана, все что нам нужно для настройки делегата - вызвать `tableView.rx.setDelegate(self)` где-нибудь во `viewDidLoad`.
 
-### "Broken" delegate
+### "Сломанный" делегат
 
-Let's do a short test for standard delegate. I've added `didSelectRowAt` method to controller's extension:
+Давайте проведем небольшой тест с использованием стандартного делегата. Я написал `didSelectRowAt` метод в расширении класса:
 
 ```swift
 extension ViewController: UITableViewDelegate {
@@ -91,7 +96,7 @@ extension ViewController: UITableViewDelegate {
 }
 ```
 
-also, I've added in `viewDidLoad` the following code:
+также, добавил подписку на rx-версию этого же метода во `viewDidLoad`:
 
 ```swift
 tableView.rx.itemSelected
@@ -101,29 +106,29 @@ tableView.rx.itemSelected
   .disposed(by: disposeBag)
 ```
 
-The most interesting part for standard `delegate` property for `UITableView`:
+Теперь интересная часть. В зависимости от того, в каком месте написать установку делегата `tableView.delegate = self` относительно rx-подписки, поведение будет разным, например:
 
-If I put `tableView.delegate = self` **before** `tableView.rx.itemSelected` both prints will be called;
+Если я напишу `tableView.delegate = self` **перед** `tableView.rx.itemSelected` в консоли я увижу оба лога:
 
 ```swift
 //call from extension
 //call from rx.itemSelected
 ```
 
-If I put `tableView.delegate = self` **after** `tableView.rx.itemSelected` only print from extension(standard) will be called and reactive version `tableView.rx.itemSelected` will be ignored;
+Если я напишу `tableView.delegate = self` **после** `tableView.rx.itemSelected` в консоли я увижу только лог из стандартной реализации делегата:
 
 ```swift
 //call from extension
 ```
 
-To avoid ambiguity and provide predictable behavior for RxSwift usage, all those proxies in RxCocoa has been written.
+Что бы избавиться от такой неоднозначности в коде,нам нужно установить делегат не стандартным способом, а используя rx-версию:
 
 ```swift
 tableView.rx.setDelegate(self)
   .disposed(by: disposeBag)
 ```
 
-And the code above is not sensitive for the place where it's written, before or after other pieces of rx-code.
+Код выше не чувствителен к тому, где он написан, перед или после rx-подписок.
 
 ### UINavigationController
 
