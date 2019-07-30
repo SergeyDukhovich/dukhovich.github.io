@@ -1,5 +1,4 @@
 ---
-layout: single
 title: "Error handling"
 date: 2019-06-07 12:00:00 +0300
 categories: rxswift

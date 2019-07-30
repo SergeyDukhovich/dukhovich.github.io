@@ -1,5 +1,4 @@
 ---
-layout: single
 title: "Connectable Observable"
 date: 2019-05-10 12:00:00 +0300
 categories: rxswift

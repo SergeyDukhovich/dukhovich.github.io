@@ -1,5 +1,4 @@
 ---
-layout: single
 title: "Reactive programming"
 date: 2019-04-26 12:00:00 +0300
 categories: rxswift

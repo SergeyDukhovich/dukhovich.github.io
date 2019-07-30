@@ -1,5 +1,4 @@
 ---
-layout: single
 title: "Creating an Observable"
 date: 2019-05-03 12:00:00 +0300
 categories: rxswift

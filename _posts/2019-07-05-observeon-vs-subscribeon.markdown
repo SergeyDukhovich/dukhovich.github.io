@@ -1,5 +1,4 @@
 ---
-layout: single
 title: "ObserveOn vs SubscribeOn"
 date: 2019-07-05 12:00:00 +0300
 categories: rxswift

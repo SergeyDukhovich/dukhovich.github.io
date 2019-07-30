@@ -1,5 +1,4 @@
 ---
-layout: single
 title: "Delegates"
 date: 2019-07-26 12:00:00 +0300
 categories: rxswift

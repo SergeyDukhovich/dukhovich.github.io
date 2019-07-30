@@ -1,5 +1,4 @@
 ---
-layout: single
 title: "Schedulers"
 date: 2019-07-12 12:00:00 +0300
 categories: rxswift

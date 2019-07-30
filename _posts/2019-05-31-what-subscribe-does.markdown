@@ -1,5 +1,4 @@
 ---
-layout: single
 title: "What subscribe does"
 date: 2019-05-31 12:00:00 +0300
 categories: rxswift
