@@ -6,9 +6,9 @@ categories: rxswift
 
 The classic of MVVM example is LoginViewModel with some use-cases, like enabling or disabling Login Button depending on login and password fields. I'm going to use [example from RxSwift repo](https://github.com/ReactiveX/RxSwift/blob/53cd723d40d05177e790c8c34c36cec7092a6106/RxExample/RxExample/Examples/SimpleValidation/SimpleValidationViewController.swift) with a little modification.
 
-![image](http://uploads.dukhovich.by.s3.amazonaws.com/articles/8/login-screen-1.png)
+![image](http://dukhovich.by/assets/images/articles/8/login-screen-1.png)
 
-![image](http://uploads.dukhovich.by.s3.amazonaws.com/articles/8/login-screen-2.png)
+![image](http://dukhovich.by/assets/images/articles/8/login-screen-2.png)
 
 The user types the login and password. If conditions meet, warning labels hides and the login button switches to the enabled state.
 

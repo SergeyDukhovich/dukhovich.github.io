@@ -106,7 +106,7 @@ messages
 
 The table displaying all messages in different cell types:
 
-![rxcocoa-table-sample](http://uploads.dukhovich.by.s3.amazonaws.com/articles/10/rxcocoa-table-sample.png)
+![rxcocoa-table-sample](http://dukhovich.by/assets/images/articles/10/rxcocoa-table-sample.png)
 
 [Link to the commit with current implementation.](https://github.com/SergeyDukhovich/RxDataSourcesSample/tree/326ca6e6a182d54a184edbec1a1fd9bcf288a733)
 
@@ -182,7 +182,7 @@ With the changes above our table will look absolutely the same. To modify the ap
 
 The table displaying all messages in different cell types in 3 sections:
 
-![rxdatasources-table-sample](http://uploads.dukhovich.by.s3.amazonaws.com/articles/10/rxdatasources-table-sample.png)
+![rxdatasources-table-sample](http://dukhovich.by/assets/images/articles/10/rxdatasources-table-sample.png)
 
 [Link to the commit with current implementation.](https://github.com/SergeyDukhovich/RxDataSourcesSample/tree/c3c55b3a7e484d2b067f182ffee492f99e22a67b)
 
@@ -246,6 +246,6 @@ class MessageObject: NSObject {
 
 `Message` is the same as we used in the examples above.
 
-![rxdatasources-table-sample](http://uploads.dukhovich.by.s3.amazonaws.com/articles/10/rxdatasources-animated-implementation.gif)
+![rxdatasources-table-sample](http://dukhovich.by/assets/images/articles/10/rxdatasources-animated-implementation.gif)
 
 [Link to the commit with current implementation.](https://github.com/SergeyDukhovich/RxDataSourcesSample/tree/115397f2bbc86986e7454a01a00e45999228b807)

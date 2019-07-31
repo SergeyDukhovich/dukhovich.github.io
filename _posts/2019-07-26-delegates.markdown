@@ -56,7 +56,7 @@ class ViewController: UIViewController {
 }
 ```
 
-![countries](http://uploads.dukhovich.by.s3.amazonaws.com/articles/countries.png)
+![countries](http://dukhovich.by/assets/images/articles/countries.png)
 
 When you connect table's outlet and the controller in storyboard/xib together (without setting a dataSource property), you'll see that the list above is displayed in `UITableView` properly. You might have noticed, that I hadn't setup dataSource in code as well. 
 
