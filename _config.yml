@@ -12,6 +12,7 @@ analytics:
 yandex_site_verification: "69e839831ef6cfd8"
 
 locale: en
+link_to_translated_base: http://dukhovich.by
 
 # Build settings
 markdown: kramdown
