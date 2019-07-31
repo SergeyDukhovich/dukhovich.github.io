@@ -1,8 +1,6 @@
-title: ""
-description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+title: "Sergey Dukhovich personal blog"
+description: >-
+  Articles about RxSwift development, written by Sergey Dukhovich.
 twitter_username: sergey.dukhovich
 github_username:  SergeyDukhovich
 minimal_mistakes_skin: air
@@ -11,9 +9,7 @@ search_full_content: true
 
 analytics:
   provider: custom
-
 yandex_site_verification: "69e839831ef6cfd8"
-
 
 locale: en
 
