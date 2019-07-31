@@ -52,7 +52,7 @@ It gives me an Observable that emits some events then errors out. We'll try to h
 
 ## 1. Inner Observable errors out
 
-Let's start with the simplest case. We have an Observable that never fails like button clicks ([ControlEvent trait](http://dukhovich.by/16-traits)). A click Observable is a source for the inner Observable applying `flatMap` operator. It means, that for each button click a new inner Observable will be created. The inner Observable forwards `error` and `next` events to the source. I like the fact that `completed` event doesn't affect the source. It gives us an option to transform `error` into `completed`, so I use this trick quite often:
+Let's start with the simplest case. We have an Observable that never fails like button clicks ([ControlEvent trait]({% post_url 2019-05-17-traits %})). A click Observable is a source for the inner Observable applying `flatMap` operator. It means, that for each button click a new inner Observable will be created. The inner Observable forwards `error` and `next` events to the source. I like the fact that `completed` event doesn't affect the source. It gives us an option to transform `error` into `completed`, so I use this trick quite often:
 
 ### The problem
 
@@ -185,7 +185,7 @@ chatObservable
 
 ## RxCocoa
 
-When working with UI we use a lot of [Driver and Signal traits](http://dukhovich.by/16-traits). They could be created from a raw failable Observable with methods which are using `catch` under the hood.
+When working with UI we use a lot of [Driver and Signal traits]({% post_url 2019-05-17-traits %}). They could be created from a raw failable Observable with methods which are using `catch` under the hood.
 
 ### Driver:
 

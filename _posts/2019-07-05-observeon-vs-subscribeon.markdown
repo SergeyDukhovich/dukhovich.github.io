@@ -183,7 +183,7 @@ On what queue will the closure of the final `subscribe` be called? The right ans
 
 This operator changes the scheduler (might be read as a queue in this context) for subscription hassles for all operators which were applied **before** it. By subscription hassles I mean the `run` method and everything related to the process of creating a particular instance of the sink-part of some operator.
 
-If you need more details about [subscription topic](http://dukhovich.by/20-what-subscribe-does) you might want to check the article where I described how the `Producer` subclasses and the `Sink` help separating responsibilities in RxSwift framework.
+If you need more details about [subscription topic]({% post_url 2019-05-31-what-subscribe-does %}) you might want to check the article where I described how the `Producer` subclasses and the `Sink` help separating responsibilities in RxSwift framework.
 
 A `Producer` instance knows what it needs to create, a `Sink` instance knows the logic of a particular operator. When subscribe is called, usually the `run` method is called on a producer's instance. `subscribeOn` instructs producers on what queue they have to call the `run` method. For creating operators, it points to the queue where the initial closure should be called.
 

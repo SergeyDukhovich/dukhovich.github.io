@@ -6,7 +6,7 @@ categories: rxswift
 
 There are only 4 operators in the [connectable](http://reactivex.io/documentation/operators.html#connectable) category.
 
-In the [introduction post](http://dukhovich.by/11-rxswift-introduction) I mentioned, that there are 2 Observable types: cold and hot. By default all [creating operators](http://dukhovich.by/12-creating-an-observable) return a cold Observable. What does it mean?
+In the [introduction post]({% post_url 2019-04-26-rxswift-introduction %}) I mentioned, that there are 2 Observable types: cold and hot. By default all [creating operators]({% post_url 2019-05-03-creating-an-observable %}) return a cold Observable. What does it mean?
 
 Let's take a look at the following example. I created a timer to do some work every second:
 

@@ -51,7 +51,7 @@ After some research, I collected classes that override the `subscribe` method. O
 
 ![img](http://uploads.dukhovich.by/articles/subscribe_diagram.png)
 
-There are a lot of classes with varied responsibilities, some of them are part of RxSwift core library, the others come from RxCocoa and RxRelay. Let's focus now on `Observable` subclasses. There are 3 vivid groups: producer + subclasses, subjects and classes which are used to [share computation resources](http://dukhovich.by/14-connectable-observable). The easiest place to start our investigation journey is `Producer` and its subclasses. They implement simple 1-to-1 subscription logic without any resource sharing.
+There are a lot of classes with varied responsibilities, some of them are part of RxSwift core library, the others come from RxCocoa and RxRelay. Let's focus now on `Observable` subclasses. There are 3 vivid groups: producer + subclasses, subjects and classes which are used to [share computation resources]({% post_url 2019-05-10-connectable-observable %}). The easiest place to start our investigation journey is `Producer` and its subclasses. They implement simple 1-to-1 subscription logic without any resource sharing.
 
 Let's take a look at `Producer.swift` file(shortened):
 
@@ -201,7 +201,7 @@ func scheduleRelative<StateType>(_ state: StateType, dueTime: Foundation.TimeInt
 }
 ```
 
-`Timer`-Producer creates `TimerOneOffSink` which creates `DispatchSourceTimer` for our repetitive job. The more you call `subscribe`, the more timers you will get. I mentioned it in [cold/hot post](http://dukhovich.by/14-connectable-observable).
+`Timer`-Producer creates `TimerOneOffSink` which creates `DispatchSourceTimer` for our repetitive job. The more you call `subscribe`, the more timers you will get. I mentioned it in [cold/hot post]({% post_url 2019-05-10-connectable-observable %}).
 
 `Filter`+`FilterSink` pair is:
 

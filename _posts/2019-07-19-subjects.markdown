@@ -237,7 +237,7 @@ subscription 5 -> isDisposed
 * By the time when `subscription 4` subscribed, 4 events were emitted, but initial parameter N is 2 and only 2 last events were replayed.
 * And the most interesting part. When `subscription 5` subscribed, the subject had been completed, but it replayed 2 events and only after that it completed. 
 
-When we discovered how [connectable Observable](http://dukhovich.by/14-connectable-observable) works, for the code below there was the same effect, because of using `ReplaySubject`.
+When we discovered how [connectable Observable]({% post_url 2019-05-10-connectable-observable %}) works, for the code below there was the same effect, because of using `ReplaySubject`.
 
 ```swift
 Observable<Int>.interval(1, scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
@@ -297,7 +297,7 @@ As you can see, all subscribers received only last `fourth` event and completed.
 
 ### Subjects in MVVM
 
-Subjects are commonly used in MVVM-like architectures. Let's say we have a `LoginViewModel` similar as we had in the [RxTest article](http://dukhovich.by/24-rx-test):
+Subjects are commonly used in MVVM-like architectures. Let's say we have a `LoginViewModel` similar as we had in the [RxTest article]({% post_url 2019-06-14-rx-test %}):
 
 ```swift
 struct LoginViewModel {

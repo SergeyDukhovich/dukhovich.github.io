@@ -99,7 +99,7 @@ Probably, the most famous trait is the Driver. It is a part of RxCocoa framework
 
 * can’t send error;
 * observed on the Main scheduler;
-* stateful, [shares computation resources](http://dukhovich.by/14-connectable-observable) and the last event, using share(replay: 1, scope: .whileConnected);
+* stateful, [shares computation resources]({% post_url 2019-05-10-connectable-observable %}) and the last event, using share(replay: 1, scope: .whileConnected);
 * suitable for the values like text, alpha, image and e.t.c.;
 
 The formula for the Driver is simple and can be written as:
@@ -298,7 +298,7 @@ Signal is the counterpart for the Driver from RxCocoa framework.
 
 * can’t send error;
 * observed on the Main scheduler;
-* stateless, [shares computation resources](http://dukhovich.by/14-connectable-observable) but not the last event, using share(replay: 0, scope: .whileConnected);
+* stateless, [shares computation resources]({% post_url 2019-05-10-connectable-observable %}) but not the last event, using share(replay: 0, scope: .whileConnected);
 * suitable for “future” events like button clicks, value changes;
 
 The only difference between the Driver and Signal is that Signal doesn't share the last value to new subscribers. It is very similar to the comparison between ReplaySubject and PublishSubject. The other abilities of Signal and the Driver are the same.

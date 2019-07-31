@@ -36,7 +36,7 @@ numbers -> isDisposed
 
 #### Take count
 
-We've already seen this operator in action (`.take(1).asSingle()`), when I described [what RxSwift traits](http://dukhovich.by/16-traits) are. It takes `count` number of `next` events from the source observable and emits `completed` after them.
+We've already seen this operator in action (`.take(1).asSingle()`), when I described [what RxSwift traits]({% post_url 2019-05-17-traits %}) are. It takes `count` number of `next` events from the source observable and emits `completed` after them.
 
 ```swift
 Observable
