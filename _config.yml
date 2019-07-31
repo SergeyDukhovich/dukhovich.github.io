@@ -12,6 +12,9 @@ search_full_content: true
 analytics:
   provider: custom
 
+yandex_site_verification: "69e839831ef6cfd8"
+
+
 locale: en
 
 # Build settings
