@@ -2,6 +2,8 @@
 title: "Subjects"
 date: 2019-07-19 12:00:00 +0300
 categories: rxswift
+toc: true
+toc_sticky: true
 ---
 
 Subject is a type that can be used as both, Observable and Observer.

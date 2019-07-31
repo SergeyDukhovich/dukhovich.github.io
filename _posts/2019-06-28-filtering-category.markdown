@@ -2,6 +2,8 @@
 title: "Filtering Category"
 date: 2019-06-28 12:00:00 +0300
 categories: rxswift
+toc: true
+toc_sticky: true
 ---
 
 ## Filtering Category

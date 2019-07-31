@@ -2,6 +2,8 @@
 title: "What subscribe does"
 date: 2019-05-31 12:00:00 +0300
 categories: rxswift
+toc: true
+toc_sticky: true
 ---
 
 It doesn't matter how many operators you have to use to describe an Observable. Without subscription it's just a definition. The state of application will never change. How does subscription change an Observable from just a definition to an actual process? And why does it require us to add one more method call after `subscribe` call, usually it's `.disposed(by: disposeBag)`? 

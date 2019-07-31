@@ -2,6 +2,8 @@
 title: "Reactive programming"
 date: 2019-04-26 12:00:00 +0300
 categories: rxswift
+toc: true
+toc_sticky: true
 ---
 
 In computing reactive programming is a declarative programming paradigm concerned with data streams and the propagation of change. You might want to read more about reactive programming on the [Wikipedia](https://www.wikiwand.com/en/Reactive_programming), but there is also a good post on [stackoverflow](https://stackoverflow.com/a/1030631) 

@@ -2,6 +2,8 @@
 title: "Connectable Observable"
 date: 2019-05-10 12:00:00 +0300
 categories: rxswift
+toc: true
+toc_sticky: true
 ---
 
 There are only 4 operators in the [connectable](http://reactivex.io/documentation/operators.html#connectable) category.

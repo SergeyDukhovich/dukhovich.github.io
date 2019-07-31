@@ -2,6 +2,8 @@
 title: "RxTest"
 date: 2019-06-14 12:00:00 +0300
 categories: rxswift
+toc: true
+toc_sticky: true
 ---
 
 The classic of MVVM example is LoginViewModel with some use-cases, like enabling or disabling Login Button depending on login and password fields. I'm going to use [example from RxSwift repo](https://github.com/ReactiveX/RxSwift/blob/53cd723d40d05177e790c8c34c36cec7092a6106/RxExample/RxExample/Examples/SimpleValidation/SimpleValidationViewController.swift) with a little modification.
