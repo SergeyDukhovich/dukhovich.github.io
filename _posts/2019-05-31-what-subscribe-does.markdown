@@ -49,7 +49,7 @@ func rxAbstractMethod(file: StaticString = #file, line: UInt = #line) -> Swift.N
 
 After some research, I collected classes that override the `subscribe` method. On the following UML diagram, you could find these classes. Moreover, I tried to display the connections with the parent classes and protocols:
 
-![img](http://uploads.dukhovich.by/articles/subscribe_diagram.png)
+![img](http://dukhovich.by/assets/images/articles/subscribe_diagram.png)
 
 There are a lot of classes with varied responsibilities, some of them are part of RxSwift core library, the others come from RxCocoa and RxRelay. Let's focus now on `Observable` subclasses. There are 3 vivid groups: producer + subclasses, subjects and classes which are used to [share computation resources]({% post_url 2019-05-10-connectable-observable %}). The easiest place to start our investigation journey is `Producer` and its subclasses. They implement simple 1-to-1 subscription logic without any resource sharing.
 

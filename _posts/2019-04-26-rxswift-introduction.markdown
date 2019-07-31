@@ -46,7 +46,7 @@ searchResults
 
 As a result, you'll see how it works:
 
-![tableview](http://uploads.dukhovich.by/articles/GithubSearch.gif)
+![tableview](http://dukhovich.by/assets/images/articles/GithubSearch.gif)
 
 
 ## Pros of RxSwift
@@ -205,7 +205,7 @@ Each Observable might emit zero or more elements. In most cases events will be e
 
 Let's take a look at the Marble diagram. You’ll see a lot of [them](https://rxmarbles.com/) when you start working with RxSwift. I find it useful for a learning purpose.
 
-![rxmarbles_debounce](http://uploads.dukhovich.by/articles/post_1_rx_marbles.png)
+![rxmarbles_debounce](http://dukhovich.by/assets/images/articles/post_1_rx_marbles.png)
 
 Circles on the diagram are the following events: the vertical line is the completed event and the cross sign is the error event. **Normal termination** of an Observable sequence is the Observable with **Completed** or **Error** event. After one of them is emitted, Observable can’t emit any Next event and resources for Observable are released.
 

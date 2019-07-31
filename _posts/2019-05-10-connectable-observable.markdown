@@ -218,7 +218,7 @@ There are two different approaches to manage Observable lifetime in RxSwift.
 
 #### Scenario 1, S2 subscribes before S1 unsubscribes:
 
-![connect](http://uploads.dukhovich.by/articles/connect_1.jpg)
+![connect](http://dukhovich.by/assets/images/articles/connect_1.jpg)
 
 ```swift
     let connectable = Observable<Int>.interval(1, scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
@@ -282,7 +282,7 @@ it prints:
 
 #### Scenario 2, S2 subscribes after S1 unsubscribes:
 
-![connect](http://uploads.dukhovich.by/articles/connect_2.jpg)
+![connect](http://dukhovich.by/assets/images/articles/connect_2.jpg)
 
 ```swift
     let connectable = Observable<Int>.interval(1, scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
@@ -355,7 +355,7 @@ Let's take a look at `refCount`:
 
 #### Scenario 1, S2 subscribes before S1 unsubscribes:
 
-![refCount](http://uploads.dukhovich.by/articles/ref_count_2.jpg)
+![refCount](http://dukhovich.by/assets/images/articles/ref_count_2.jpg)
 
 ```swift
     let connectable = Observable<Int>.interval(1, scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
@@ -415,7 +415,7 @@ it prints:
 
 #### Scenario 2, S2 subscribes after S1 unsubscribes:
 
-![refCount](http://uploads.dukhovich.by/articles/ref_count_1.jpg)
+![refCount](http://dukhovich.by/assets/images/articles/ref_count_1.jpg)
 
 ```swift
     let connectable = Observable<Int>.interval(1, scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
@@ -488,7 +488,7 @@ In the examples above we have used PublishSubject. To see how `replay` works, we
 
 We call subscribe as the first subscriber after 2.5 seconds to `connect` and `refCount`, both have `ReplaySubject` with 2 last items:
 
-![replay](http://uploads.dukhovich.by/articles/replay_1.jpg)
+![replay](http://dukhovich.by/assets/images/articles/replay_1.jpg)
 
 `RefCount` waits for the first subscriber and by the time it subscribes there is nothing to replay:
 
@@ -562,7 +562,7 @@ We call subscribe as the first subscriber after 2.5 seconds to `connect` and `re
 
 We call subscribe as the second subscriber after 3.5 seconds to `connect` and `refCount`, both have `ReplaySubject` with 2 last items:
 
-![replay](http://uploads.dukhovich.by/articles/replay_2.jpg)
+![replay](http://dukhovich.by/assets/images/articles/replay_2.jpg)
 
 ```swift
 let connectable = Observable<Int>.interval(1, scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
@@ -638,7 +638,7 @@ There is no difference in the console. By the time the second subscriber calls `
 
 We call subscribe as the second subscriber after 14.5 seconds while the first subscriber was unsubscribed right after receiving `next(10)`:
 
-![replay](http://uploads.dukhovich.by/articles/replay_3.jpg)
+![replay](http://dukhovich.by/assets/images/articles/replay_3.jpg)
 
 ```swift
     let connectable = Observable<Int>.interval(1, scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
