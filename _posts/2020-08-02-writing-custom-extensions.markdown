@@ -13,12 +13,12 @@ Technically, `rx` extensions for `SomeClass` is an extension, written in the fol
 ```swift
 extension Reactive where Base: SomeClass {
   func someObservable() -> Observable<Int> {
-    return Observable<Int>.just(1)
+    return Observable<Int>...
   }
 }
 ```
 
-This extension alone doesn't give you any benefits(except `SomeClass` inherits from `NSObject`). Before you could access `.rx.someObservable()` on the instance of this class you have to write one more extension:
+This extension alone doesn't give you any benefits(except `SomeClass` inherits from `NSObject`). Before you could access to `.rx.someObservable()` on the class instance, you have to write one more extension:
 
 ```swift
 extension SomeClass: ReactiveCompatible {}
