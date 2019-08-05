@@ -194,7 +194,7 @@ extension Reactive where Base: UISlider {
 }
 ```
 
-In some cases `ControlProperty` might be initialized using `init(values:, valueSink:)`.
+In some cases `ControlProperty` might be initialized using `init(values:valueSink:)`.
 
 ## Custom UIControl extension
 
@@ -208,7 +208,7 @@ And don't worry if your (or third party) implementation doesn't use events at al
 
 ### Use ControlEvent
 
-If your custom UIControl doesn't store any value and `.valueChanged` event is used, it will be easy to wrap this event with `ControlEvent`. 
+If your custom UIControl doesn't store any value and any type of `UIControlEvents` is used, it will be easy to wrap this event with `ControlEvent`. 
 
 Remember, you are able to instantiate ControlEvent with source Observable, if your control doesn't send any event. You may start with `PublishRelay` as the source.
 
