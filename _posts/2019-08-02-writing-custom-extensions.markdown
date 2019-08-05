@@ -204,13 +204,13 @@ Subclasses of [UIControl](https://developer.apple.com/documentation/uikit/uicont
 
 If your custom UIControl relies on some value, and uses event `.valueChanged`, it will be easy to wrap this value with `ControlProperty`. 
 
-And don't worry if your (or third party) implementation doesn't use events at all, you still able to instantiate ControlProperty with source Observable, but read its requirement twice! You may start with `BehaviorRelay` as the source.
+And don't worry if your (or third party) implementation doesn't use events at all, you still able to instantiate ControlProperty with source Observable, but read its requirement twice!
 
 ### Use ControlEvent
 
 If your custom UIControl doesn't store any value and any type of `UIControlEvents` is used, it will be easy to wrap this event with `ControlEvent`. 
 
-Remember, you are able to instantiate ControlEvent with source Observable, if your control doesn't send any event. You may start with `PublishRelay` as the source.
+Remember, you are able to instantiate ControlEvent with source Observable, if your control doesn't send any event.
 
 ## For UI but not UIControl cases
 
