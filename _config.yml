@@ -55,7 +55,7 @@ author:
       url: "https://www.linkedin.com/in/sergey-dukhovich/"
     - label: "Resume"
       icon: "fas fa-fw fa-file-word"
-      url: "http://dukhovich.by/assets/en_dukhovich_sergey_cv_ios.docx"
+      url: "http://dukhovich.net/assets/dukhovich_sergey_cv_ios.docx"
 
 defaults:
   # _posts
