@@ -592,7 +592,8 @@ Have you ever worked with `Observable<Optional(SomeType)>`? In terms of Primitiv
 
 ## Control Property / Control Event
 
-* they are Observer and Observable at the same time;
+* Control Property is Observer and Observable at the same time;
+* Control Event is Observable only;
 * very similar to Driver/Signal, but they are bound to element's lifecycle;
 * they are unique members of RxCocoa framework;
 * they deliver events on MainScheduler;
